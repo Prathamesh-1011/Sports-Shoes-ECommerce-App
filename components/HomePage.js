@@ -3,43 +3,42 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
-const Tab = createBottomTabNavigator();
 
 const Home = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Sport Shoes</Text>
-        <View style={styles.headerIcons}>
-          {<AntDesign name="hearto" size={24} color="black" />}
-          {<AntDesign name="shoppingcart" size={24} color="black" />}
-          {<FontAwesome name="bell-o" size={24} color="black" />}
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Sport Shoes</Text>
+          <View style={styles.headerIcons}>
+            <TouchableOpacity onPress={() => navigation.navigate('Wishlist')}>
+              <AntDesign name="hearto" size={24} color="black" />
+            </TouchableOpacity> 
+            <AntDesign name="shoppingcart" size={24} color="black" />
+            <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+              <FontAwesome name="bell-o" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      {/* Search Bar */}
-      <View style={styles.searchBar}>
-        <Text style={styles.searchBarPlaceholder}>Search items</Text>
-        {<FontAwesome name="search" size={24} color="black" />}
-      </View>
-
-      {/* Balance Section */}
-      <View style={styles.balanceSection}>
-        <View style={styles.balanceCard}>
-          <Text style={styles.balanceLabel}>Wallet balance</Text>
-          <Text style={styles.balanceAmount}>Rp1.000.000</Text>
+        {/* Search Bar */}
+        <View style={styles.searchBar}>
+          <Text style={styles.searchBarPlaceholder}>Search items</Text>
+          <FontAwesome name="search" size={24} color="black" />
         </View>
-        <TouchableOpacity style={styles.topUpButton}>
-          <Text style={styles.topUpText}>+ Top up</Text>
-        </TouchableOpacity>
-      </View>
 
-      
+        {/* Balance Section */}
+        <View style={styles.balanceSection}>
+          <View style={styles.balanceCard}>
+            <Text style={styles.balanceLabel}>Wallet balance</Text>
+            <Text style={styles.balanceAmount}>Rp1.000.000</Text>
+          </View>
+          <TouchableOpacity style={styles.topUpButton}>
+            <Text style={styles.topUpText}>+ Top up</Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Promo Banner */}
         <View style={styles.promoBanner}>
           <Text style={styles.promoText}>15% OFF</Text>
@@ -53,17 +52,17 @@ const Home = () => {
           <View style={styles.categoryList}>
             {/* Category Item - Footwear */}
             <TouchableOpacity style={styles.categoryItem}>
-              {<Ionicons name="footsteps-outline" size={24} color="black" />}
+              <Ionicons name="footsteps-outline" size={24} color="black" />
               <Text style={styles.categoryName}>FOOTWEAR</Text>
             </TouchableOpacity>
             {/* Category Item - Bags */}
             <TouchableOpacity style={styles.categoryItem}>
-              {<Ionicons name="bag-sharp" size={24} color="black" />}
+              <Ionicons name="bag-sharp" size={24} color="black" />
               <Text style={styles.categoryName}>BAGS</Text>
             </TouchableOpacity>
             {/* Category Item - Apparel */}
             <TouchableOpacity style={styles.categoryItem}>
-              {<Ionicons name="shirt-outline" size={24} color="black" />}
+              <Ionicons name="shirt-outline" size={24} color="black" />
               <Text style={styles.categoryName}>APPAREL</Text>
             </TouchableOpacity>
           </View>
@@ -73,7 +72,8 @@ const Home = () => {
         <View style={styles.forYouSection}>
           <Text style={styles.forYouHeading}>FOR YOU</Text>
           <View style={styles.productList}>
-            {/* Product Item - Air Legging Sport */}
+            {/* Product Items */}
+            {/* Example product */}
             <View style={styles.productItem}>
               <Image
                 source={require('../assets/pict1.png')} // Replace with actual image path
@@ -83,39 +83,7 @@ const Home = () => {
               <Text style={styles.productCategory}>Apparel</Text>
               <Text style={styles.productPrice}>Rp200.000</Text>
             </View>
-
-            {/* Product Item - Aero Sport Infinity Max */}
-            <View style={styles.productItem}>
-              <Image
-                source={require('../assets/pict.png')} // Replace with actual image path
-                style={styles.productImage}
-              />
-              <Text style={styles.productName}>AERO SPORT INFINITY MAX</Text>
-              <Text style={styles.productCategory}>Footwear</Text>
-              <Text style={styles.productPrice}>Rp450.000</Text>
-            </View>
-
-            {/* Product Item - Sport+ Runner Blue Edition */}
-            <View style={styles.productItem}>
-              <Image
-                source={require('../assets/pict2.png')} // Replace with actual image path
-                style={styles.productImage}
-              />
-              <Text style={styles.productName}>SPORT+ RUNNER BLUE EDITION</Text>
-              <Text style={styles.productCategory}>Footwear</Text>
-              <Text style={styles.productPrice}>Rp250.000</Text>
-            </View>
-
-                        {/* Product Item - Sport+ Bag */}
-                        <View style={styles.productItem}>
-              <Image
-                source={require('../assets/pict3.png')} // Replace with actual image path
-                style={styles.productImage}
-              />
-              <Text style={styles.productName}>SPORT+ BAG</Text>
-              <Text style={styles.productCategory}>Bags</Text>
-              <Text style={styles.productPrice}>Rp150.000</Text>
-            </View>
+            {/* Add more product items here */}
           </View>
         </View>
       </ScrollView>
@@ -123,30 +91,7 @@ const Home = () => {
   );
 };
 
-const Exchange = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Exchange Screen</Text>
-    </View>
-  );
-};
-
-const Tickets = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Tickets Screen</Text>
-    </View>
-  );
-};
-
-const Forms = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Forms Screen</Text>
-    </View>
-  );
-};
-
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
@@ -170,6 +115,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   searchBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
@@ -217,34 +165,31 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
   },
   promoText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#4CAF50',
   },
   promoSubText: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#666',
   },
   promoDate: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: 14,
+    color: '#666',
   },
   categorySection: {
     padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
   },
   categoryHeading: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 16,
   },
   categoryList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
   categoryItem: {
+    alignItems: 'center',
     padding: 16,
     backgroundColor: '#f7f7f7',
     borderRadius: 10,
@@ -252,29 +197,26 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: 14,
     color: '#666',
+    marginTop: 8,
   },
   forYouSection: {
     padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
   },
   forYouHeading: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 16,
   },
   productList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    flexWrap: 'wrap',
   },
   productItem: {
+    alignItems: 'center',
     padding: 16,
     backgroundColor: '#f7f7f7',
     borderRadius: 10,
     width: '45%',
-    marginBottom: 16,
   },
   productImage: {
     width: '100%',
@@ -283,18 +225,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   productName: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 8,
   },
   productCategory: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
   },
   productPrice: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'bold',
+    marginTop: 8,
   },
 });
-
-
-export default Home;
