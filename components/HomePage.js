@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Home = () => {
+
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -72,8 +76,7 @@ const Home = () => {
         <View style={styles.forYouSection}>
           <Text style={styles.forYouHeading}>FOR YOU</Text>
           <View style={styles.productList}>
-            {/* Product Items */}
-            {/* Example product */}
+            {/* Product Item - Air Legging Sport */}
             <View style={styles.productItem}>
               <Image
                 source={require('../assets/pict1.png')} // Replace with actual image path
@@ -83,7 +86,36 @@ const Home = () => {
               <Text style={styles.productCategory}>Apparel</Text>
               <Text style={styles.productPrice}>Rp200.000</Text>
             </View>
-            {/* Add more product items here */}
+            {/* Product Item - Aero Sport Infinity Max */}
+            <View style={styles.productItem}>
+              <Image
+                source={require('../assets/pict.png')} // Replace with actual image path
+                style={styles.productImage}
+              />
+              <Text style={styles.productName}>AERO SPORT INFINITY MAX</Text>
+              <Text style={styles.productCategory}>Footwear</Text>
+              <Text style={styles.productPrice}>Rp450.000</Text>
+            </View>
+            {/* Product Item - Sport+ Runner Blue Edition */}
+            <View style={styles.productItem}>
+              <Image
+                source={require('../assets/pict2.png')} // Replace with actual image path
+                style={styles.productImage}
+              />
+              <Text style={styles.productName}>SPORT+ RUNNER BLUE EDITION</Text>
+              <Text style={styles.productCategory}>Footwear</Text>
+              <Text style={styles.productPrice}>Rp250.000</Text>
+            </View>
+                        {/* Product Item - Sport+ Bag */}
+                        <View style={styles.productItem}>
+              <Image
+                source={require('../assets/pict3.png')} // Replace with actual image path
+                style={styles.productImage}
+              />
+              <Text style={styles.productName}>SPORT+ BAG</Text>
+              <Text style={styles.productCategory}>Bags</Text>
+              <Text style={styles.productPrice}>Rp150.000</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -165,31 +197,34 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
   },
   promoText: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
+    color: '#4CAF50',
   },
   promoSubText: {
-    fontSize: 18,
-    color: '#666',
-  },
-  promoDate: {
     fontSize: 14,
     color: '#666',
   },
+  promoDate: {
+    fontSize: 12,
+    color: '#999',
+  },
   categorySection: {
     padding: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   categoryHeading: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 16,
   },
   categoryList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   categoryItem: {
-    alignItems: 'center',
     padding: 16,
     backgroundColor: '#f7f7f7',
     borderRadius: 10,
@@ -197,26 +232,29 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: 14,
     color: '#666',
-    marginTop: 8,
   },
   forYouSection: {
     padding: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   forYouHeading: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 16,
   },
   productList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
   productItem: {
-    alignItems: 'center',
     padding: 16,
     backgroundColor: '#f7f7f7',
     borderRadius: 10,
     width: '45%',
+    marginBottom: 16,
   },
   productImage: {
     width: '100%',
@@ -225,18 +263,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   productName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 8,
-  },
-  productCategory: {
     fontSize: 14,
     color: '#666',
-    marginTop: 4,
+  },
+  productCategory: {
+    fontSize: 12,
+    color: '#999',
   },
   productPrice: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
-    marginTop: 8,
   },
 });

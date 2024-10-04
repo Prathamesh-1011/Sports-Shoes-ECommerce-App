@@ -12,6 +12,8 @@ import Exchange from './components/Exchange.js';  // Exchange component
 import Tickets from './components/Tickets.js';  // Tickets component
 import Articles from './components/Articles.js';  // Articles component
 import Account from './components/Account.js';  // Account component
+import WishlistScreen from './components/WishList.js';
+import NotificationScreen from './components/Notification.js';
 
 // Create a bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -60,6 +62,8 @@ function App() {
           component={HomeTabNavigator}
           options={{ headerShown: false }}  // Hides the header to avoid double headers
         />
+        <Stack.Screen name="Wishlist" component={WishlistScreen} />
+        <Stack.Screen name="Notifications" component={NotificationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
