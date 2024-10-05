@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, FlatList, ScrollView, Dimensions } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -27,47 +27,73 @@ const Home = () => {
         </View>
 
         {/* Search Bar */}
-        <View style={styles.searchBar}>
-          <Text style={styles.searchBarPlaceholder}>Search items</Text>
-          <FontAwesome name="search" size={24} color="black" />
-        </View>
+      <View style={styles.searchBar}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search items"
+          placeholderTextColor="#888"
+        />
+        <TouchableOpacity style={styles.searchButton}>
+          <Ionicons name="search" size={20} color="black" />
+        </TouchableOpacity>
+      </View>
 
-        {/* Balance Section */}
-        <View style={styles.balanceSection}>
-          <View style={styles.balanceCard}>
-            <Text style={styles.balanceLabel}>Wallet balance</Text>
-            <Text style={styles.balanceAmount}>Rp1.000.000</Text>
+        {/* Wallet & Top Up */}
+      <View style={styles.walletContainer}>
+        <View style={styles.walletBalanceSection}>
+          <Text style={styles.walletLabelText}>Wallet balance</Text>
+          <View style={styles.walletBalanceContent}>
+            <Ionicons name="wallet-outline" size={20} color="black" />
+            <Text style={styles.walletBalanceText}> Rp1.000.000</Text>
           </View>
-          <TouchableOpacity style={styles.topUpButton}>
-            <Text style={styles.topUpText}>+ Top up</Text>
-          </TouchableOpacity>
         </View>
+        <View style={styles.divider} />
+        <TouchableOpacity style={styles.topUpSection}>
+          <Text style={styles.walletLabelText}>Top up balance</Text>
+          <View style={styles.topUpContent}>
+            <Ionicons name="add-circle-outline" size={20} color="black" />
+            <Text style={styles.topUpButtonText}>Top up</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
         {/* Promo Banner */}
+       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={styles.promoBanner}>
-          <Text style={styles.promoText}>15% OFF</Text>
+        <Image
+                source={require('../assets/banner.png')} 
+                style={styles.promoImage}
+              />
+          {/* <Text style={styles.promoText}>15% OFF</Text>
           <Text style={styles.promoSubText}>All Items</Text>
-          <Text style={styles.promoDate}>01/09/2023 - 10/09/2023</Text>
+          <Text style={styles.promoDate}>01/09/2023 - 10/09/2023</Text> */}
         </View>
+        <View style={styles.promoBanner}>
+        <Image
+                source={require('../assets/banner1.png')} 
+                style={styles.promoImage}
+              />
+          {/* <Text style={styles.promoText}>FLASH SALE</Text>
+          <Text style={styles.promoSubText}>New Arrival Shoes</Text>
+          <Text style={styles.promoDate}>01/09/2023 - 10/09/2023</Text> */}
+        </View>
+       </ScrollView>
 
         {/* Shop by Category */}
-        <View style={styles.categorySection}>
-          <Text style={styles.categoryHeading}>SHOP BY CATEGORY</Text>
-          <View style={styles.categoryList}>
-            {/* Category Item - Footwear */}
-            <TouchableOpacity style={styles.categoryItem}>
-              <Ionicons name="footsteps-outline" size={24} color="black" />
-              <Text style={styles.categoryName}>FOOTWEAR</Text>
+        <View style={styles.categoriesContainer}>
+          <Text style={styles.categoriesTitle}>SHOP BY CATEGORY</Text>
+          <View style={styles.categoryButtonsRow}>
+            <TouchableOpacity style={styles.categoryButton}>
+              <Ionicons name="footsteps-outline" size={40} color="black" />
+              <Text style={styles.categoryButtonText}>FOOTWEAR</Text>
             </TouchableOpacity>
-            {/* Category Item - Bags */}
-            <TouchableOpacity style={styles.categoryItem}>
-              <Ionicons name="bag-sharp" size={24} color="black" />
-              <Text style={styles.categoryName}>BAGS</Text>
+            <TouchableOpacity style={styles.categoryButton}>
+              <Ionicons name="bag-outline" size={40} color="black" />
+              <Text style={styles.categoryButtonText}>BAGS</Text>
             </TouchableOpacity>
-            {/* Category Item - Apparel */}
-            <TouchableOpacity style={styles.categoryItem}>
-              <Ionicons name="shirt-outline" size={24} color="black" />
-              <Text style={styles.categoryName}>APPAREL</Text>
+            <TouchableOpacity style={styles.categoryButton}>
+              <Ionicons name="shirt-outline" size={40} color="black" />
+              <Text style={styles.categoryButtonText}>APPAREL</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -134,61 +160,107 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#fff',
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
   headerText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
+    color: '#F26522',
+    fontStyle: 'italic',
+    paddingTop:25,
+    paddingLeft:8,
+    fontFamily:'sans-serif-condensed',
   },
   headerIcons: {
     flexDirection: 'row',
+    paddingTop:25,
+  },
+  headerIcon: {
+    flexDirection: 'row',
+    paddingTop:25,
+    justifyContent: 'space-between',
   },
   searchBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+    borderStyle: 'solid',
+    backgroundColor: '#fff',
+    
   },
-  searchBarPlaceholder: {
-    fontSize: 16,
-    color: '#666',
+  searchInput: {
+    flex: 1,
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius:10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  balanceSection: {
+  searchButton: {
+    marginLeft: 16,
+    backgroundColor: '#F26522',
+    padding: 8,
+    borderRadius: 12,
+  },
+  walletContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5, // Adds a shadow for Android
+    marginVertical: 16,
+    marginHorizontal: 20, // Adjusts the spacing from the screen edges
   },
-  balanceCard: {
-    backgroundColor: '#f7f7f7',
-    padding: 16,
-    borderRadius: 10,
+  walletBalanceSection: {
+    flex: 1,
   },
-  balanceLabel: {
+  walletLabelText: {
     fontSize: 14,
     color: '#666',
+    marginBottom: 4,
   },
-  balanceAmount: {
+  walletBalanceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  walletBalanceText: {
+    marginLeft: 8,
     fontSize: 18,
     fontWeight: 'bold',
   },
-  topUpButton: {
-    backgroundColor: '#4CAF50',
-    padding: 16,
-    borderRadius: 10,
+  divider: {
+    height: '100%',
+    width: 1,
+    backgroundColor: '#ddd',
+    marginHorizontal: 16,
   },
-  topUpText: {
-    fontSize: 14,
-    color: '#fff',
+  topUpSection: {
+    flex: 1,
+  },
+  topUpContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  topUpButtonText: {
+    marginLeft: 8,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   promoBanner: {
     padding: 16,
@@ -209,29 +281,42 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#999',
   },
-  categorySection: {
-    padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+  categoriesContainer: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
   },
-  categoryHeading: {
-    fontSize: 18,
+  categoriesTitle: {
+    fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 16,
+    color: '#333', // Dark text for the title
+    fontFamily:'sans-serif-condensed',
   },
-  categoryList: {
+  categoryButtonsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+  },
+  categoryButton: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#f8f8f8',
+    borderRadius: 12,
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  categoryItem: {
-    padding: 16,
-    backgroundColor: '#f7f7f7',
-    borderRadius: 10,
-  },
-  categoryName: {
-    fontSize: 14,
-    color: '#666',
+  categoryButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#f5522f', // Orange text
+    marginTop: 8,
+    // color: '#333', // Dark text for the title
+    fontFamily:'sans-serif-condensed',
   },
   forYouSection: {
     padding: 16,
@@ -251,27 +336,41 @@ const styles = StyleSheet.create({
   },
   productItem: {
     padding: 16,
-    backgroundColor: '#f7f7f7',
-    borderRadius: 10,
-    width: '45%',
+    backgroundColor: '#fff',
+    borderRadius: 4,
     marginBottom: 16,
+    marginHorizontal: 8,
+    shadowColor: '#000',
+    width: '45%',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
+    shadowOffset: { width: 0, height: 2 },
   },
   productImage: {
     width: '100%',
     height: 150,
     resizeMode: 'cover',
     borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   productName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: '#333', // Dark text for the title
+    fontFamily:'sans-serif-condensed',
+  },
+  productCategory: {
     fontSize: 14,
     color: '#666',
   },
-  productCategory: {
-    fontSize: 12,
-    color: '#999',
-  },
   productPrice: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#f5522f',
   },
 });

@@ -40,7 +40,8 @@ function HomeTabNavigator() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false,
+            headerBackTitleVisible: true  }}/>
       <Tab.Screen name="Exchange" component={Exchange} />
       <Tab.Screen name="Tickets" component={Tickets} />
       <Tab.Screen name="Articles" component={Articles} />
